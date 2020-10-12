@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="SeleniumTests">
+
+    <test name="Chrome">
+        <parameter name="port" value="9001"/>
+<!--        <parameter name="browser" value="Chrome"/>-->
+        <classes>
+            <class name="test.UserRegistrationTest"/>
+            <class name="test.LoginTest"/>
+            <class name="test.AddItemToCartTest"/>
+        </classes>
+    </test>
+
+    <test name ="Firefox">
+        <parameter name="port" value="9002"/>
+<!--        <parameter name="browser" value="Chrome"/>-->
+        <classes>
+            <class name="test.UserRegistrationTest"/>
+            <class name="test.LoginTest"/>
+            <class name="test.AddItemToCartTest"/>
+        </classes>
+    </test>
+</suite>
