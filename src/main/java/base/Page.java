@@ -25,7 +25,7 @@ public abstract class Page {
         element.sendKeys(text);
     }
 
-    protected void selectFromCombobocByVisibleText(WebElement element, String text) {
+    protected void selectFromComboboxByVisibleText(WebElement element, String text) {
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }

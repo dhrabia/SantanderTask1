@@ -28,10 +28,11 @@ public class UserRegistrationTest extends SetUpDriver {
     private MyAccountPage myAccountPage;
 
 
-    @Parameters({"port"})
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(String port) throws MalformedURLException {
-        initiateDriver(port);
+    public void setUp(String browser) throws MalformedURLException {
+        setUpDriver(browser);
+//        initiateDriver(port);
 
         homepage = new HomePage(driver);
         authpage = new AuthenticationPage(driver);
@@ -63,9 +64,9 @@ public class UserRegistrationTest extends SetUpDriver {
     @Test
     public void registerCustomerTest() throws InterruptedException {
         authpage.createAccount(customer.getEmail());
-        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), customer.getPassword());
-        createAccountPage.fillAddress(customer.getFirstname(), customer.getLastname(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getPostcode(), customer.getCountry(), customer.getMobilephone());
-        createAccountPage.submitRegisterAccount();
+        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), customer.getPassword())
+                         .fillAddress(customer.getFirstname(), customer.getLastname(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getPostcode(), customer.getCountry(), customer.getMobilephone())
+                         .submitRegisterAccount();
         Assert.assertTrue(Page.isElementDisplayed(myAccountPage.myAccountHeader), "Page My Account doesn't displayed.");
         Assert.assertEquals(myAccountPage.getAccountName(), customer.getFirstname() + " " + customer.getLastname(), "Account name is not as expected.");
     }
@@ -73,8 +74,8 @@ public class UserRegistrationTest extends SetUpDriver {
     @Test
     public void tryCreateAccountWithNoAddressInformations() {
         authpage.createAccount(customer.getEmail());
-        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), customer.getPassword());
-        createAccountPage.submitRegisterAccount();
+        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), customer.getPassword())
+                         .submitRegisterAccount();
         Assert.assertTrue(isElementDisplayed(createAccountPage.dangerAlert), "Alert about missing required informations doesn't displayed.");
         Assert.assertFalse(Page.isElementDisplayed(myAccountPage.myAccountHeader), "Page My Account displayed. Account created.");
     }
@@ -82,9 +83,9 @@ public class UserRegistrationTest extends SetUpDriver {
     @Test
     public void tryCreateAccountWithPasswordLessThan5Signs() {
         authpage.createAccount(customer.getEmail());
-        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), "1234");
-        createAccountPage.fillAddress(customer.getFirstname(), customer.getLastname(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getPostcode(), customer.getCountry(), customer.getMobilephone());
-        createAccountPage.submitRegisterAccount();
+        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), "1234")
+                         .fillAddress(customer.getFirstname(), customer.getLastname(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getPostcode(), customer.getCountry(), customer.getMobilephone())
+                         .submitRegisterAccount();
         Assert.assertTrue(isElementDisplayed(createAccountPage.dangerAlert), "Alert doesn't displayed.");
         Assert.assertFalse(Page.isElementDisplayed(myAccountPage.myAccountHeader), "Page My Account displayed. Account created.");
     }
@@ -99,9 +100,9 @@ public class UserRegistrationTest extends SetUpDriver {
     @Test
     public void tryCreateAccountWithWhitespacesInPassword() {
         authpage.createAccount(customer.getEmail());
-        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), "     ");
-        createAccountPage.fillAddress(customer.getFirstname(), customer.getLastname(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getPostcode(), customer.getCountry(), customer.getMobilephone());
-        createAccountPage.submitRegisterAccount();
+        createAccountPage.fillPersonalInformation(customer.getFirstname(), customer.getLastname(), customer.getEmail(), "     ")
+                         .fillAddress(customer.getFirstname(), customer.getLastname(), customer.getAddress(), customer.getCity(), customer.getState(), customer.getPostcode(), customer.getCountry(), customer.getMobilephone())
+                         .submitRegisterAccount();
         Assert.assertTrue(isElementDisplayed(createAccountPage.dangerAlert), "Alert doesn't displayed.");
         Assert.assertFalse(Page.isElementDisplayed(myAccountPage.myAccountHeader), "Page My Account displayed. Account created.");
     }

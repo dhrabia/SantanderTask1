@@ -70,4 +70,5 @@ public class LoginTest extends SetUpDriver {
         Assert.assertEquals(authpage.getDangerAlertText(), "Authentication failed.");
     }
 
+
 }

@@ -3,22 +3,22 @@
 <suite thread-count="2" name="SeleniumTests">
 
     <test name="Chrome">
-        <parameter name="port" value="9001"/>
-<!--        <parameter name="browser" value="Chrome"/>-->
+<!--        <parameter name="port" value="9001"/>-->
+        <parameter name="browser" value="Chrome"/>
         <classes>
             <class name="test.UserRegistrationTest"/>
-            <class name="test.LoginTest"/>
-            <class name="test.AddItemToCartTest"/>
+<!--            <class name="test.LoginTest"/>-->
+<!--            <class name="test.AddItemToCartTest"/>-->
         </classes>
     </test>
 
     <test name ="Firefox">
-        <parameter name="port" value="9002"/>
-<!--        <parameter name="browser" value="Chrome"/>-->
+<!--        <parameter name="port" value="9002"/>-->
+        <parameter name="browser" value="Firefox"/>
         <classes>
-            <class name="test.UserRegistrationTest"/>
-            <class name="test.LoginTest"/>
-            <class name="test.AddItemToCartTest"/>
+<!--            <class name="test.UserRegistrationTest"/>-->
+<!--            <class name="test.LoginTest"/>-->
+<!--            <class name="test.AddItemToCartTest"/>-->
         </classes>
     </test>
 </suite>

@@ -15,11 +15,19 @@ public class SetUpDriver {
 
     public void setUpDriver(String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            if (System.getProperty("os.name").contains("Windows")) {
+                System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            } else {
+                System.setProperty("webdriver.chrome.driver", "chromedriver");
+            }
             driver = new ChromeDriver();
         }
         else if (browser.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+            if (System.getProperty("os.name").contains("Windows")) {
+                System.setProperty("webdriver.gecko.driver", "chromedriver.exe");
+            } else {
+                System.setProperty("webdriver.gecko.driver", "chromedriver.exe");
+            }
             driver = new FirefoxDriver();
         }
     }

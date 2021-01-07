@@ -55,9 +55,9 @@ public class CreateAccountPage extends Page {
         fillTextbox(lastnameAddressField, lastname);
         fillTextbox(addressField, address);
         fillTextbox(cityField, city);
-        selectFromCombobocByVisibleText(stateField, state);
+        selectFromComboboxByVisibleText(stateField, state);
         fillTextbox(postcodeField, postcode);
-        selectFromCombobocByVisibleText(countryField, country);
+        selectFromComboboxByVisibleText(countryField, country);
         fillTextbox(phoneMobileField, mobilephone);
         return this;
     }
